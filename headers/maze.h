@@ -24,6 +24,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <math.h>
+#include <time.h>
 #include "structs.h" /* struct definitions */
 #include "global.h" /* global variables */
 
@@ -43,5 +44,7 @@ void renderWalls(int *maze, SDL_Point map, point_t rayPos, point_t rayDir,
 void renderBGFlat(void);
 void renderBGTex(SDL_Point map, point_t rayDir, double distToWall,
 		double wallX, int drawEnd, int x, int side);
+
+void renderRain(); /* Added the rain effect */
 
 #endif /* MAZE_H */

@@ -1,4 +1,5 @@
 #include "maze.h"
+#include "global.h"
 #include <stdio.h>  // Add for debug logging
 
 /* global variables */
@@ -10,7 +11,7 @@ uint32_t tiles[TEX_COUNT][TEX_HEIGHT][TEX_WIDTH];
 point_t pos;
 point_t dir;
 point_t plane;
-double time;
+double current_time;
 
 /**
  * main - renders maze
@@ -31,7 +32,7 @@ int main(int argc, char *argv[])
         dir.y = -0.66;
         plane.x = 0;
         plane.y = 0.66;
-        time = 0;
+        current_time = 0;
 
         /* check user arguments and set options */
         mapName = "\0";
@@ -83,6 +84,7 @@ int main(int argc, char *argv[])
         }
 
         /* loops until user exits by ESC or closing window */
+	srand(time(NULL)); /* Initialize random number generator */
         while (!quit())
         {
                 if (!textured)
@@ -93,6 +95,12 @@ int main(int argc, char *argv[])
 
                 /* handles user input */
                 input(maze);
+
+		/* Render rain effects */
+		renderRain();
+
+		/* Update the screen */
+		SDL_RenderPresent(renderer);
         }
 
         /* close SDL, renderer, and window */

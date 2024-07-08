@@ -26,6 +26,6 @@ extern point_t dir;
 extern point_t plane;
 
 /* time of current frame */
-extern double time;
+extern double current_time;
 
 #endif /* GLOBAL_H */

@@ -15,9 +15,9 @@ void input(int *maze)
 	double rotSpeed; /*rotation speed modifier */
 
 	keystate = SDL_GetKeyboardState(NULL);
-	oldTime = time;
-	time = SDL_GetTicks();
-	frameTime = (time - oldTime) / 1000.0;
+	oldTime = current_time;
+	current_time = SDL_GetTicks();
+	frameTime = (current_time - oldTime) / 1000.0;
 	moveSpeed = frameTime * 5.0;
 	rotSpeed = frameTime * 3.0;
 

@@ -28,4 +28,9 @@ extern point_t plane;
 /* time of current frame */
 extern double current_time;
 
+/* rain effect variables */
+extern bool rain_active;
+extern Uint32 rain_toggle_time;
+extern Uint32 rain_interval;
+
 #endif /* GLOBAL_H */

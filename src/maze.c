@@ -13,6 +13,11 @@ point_t dir;
 point_t plane;
 double current_time;
 
+/* rain effect variables */
+bool rain_active = false;
+Uint32 rain_toggle_time = 0;
+Uint32 rain_interval = 30000; /* Interval in seconds */
+
 /**
  * main - renders maze
  * @argc: number of arguments
@@ -96,8 +101,17 @@ int main(int argc, char *argv[])
                 /* handles user input */
                 input(maze);
 
-		/* Render rain effects */
-		renderRain();
+		/* Toggle rain effects based on intervals */
+		Uint32 current_ticks = SDL_GetTicks();
+		if (current_ticks - rain_toggle_time > rain_interval) {
+			rain_active = !rain_active;
+			rain_toggle_time = current_ticks;
+		}
+
+		/* Render rain effects if active */
+		if (rain_active) {
+			renderRain();
+		}
 
 		/* Update the screen */
 		SDL_RenderPresent(renderer);
